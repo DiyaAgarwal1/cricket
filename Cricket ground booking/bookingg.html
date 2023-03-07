@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="./Css/Bookinggstyle.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+<body>
+<div class="innerlayer">
+    <div class="container">
+        <div class="row no-margin" id="form">
+            <div class="col-sm-7">
+                 <div class="content">
+                 <h1>Grab Your Ticket Now!!</h1>
+                </div>
+
+            </div>
+            <div class="col-sm-5">
+                <div class="form-data">
+                    <div class="form-head">
+  <h3>Book Ticket</h3>
+                    </div>
+                   
+                    <div class="form-body">
+                        <div class="row form-row">
+                            <label for="">Enter FullName</label>
+                        <input type="text" id="name" placeholder="FullName" class="form-control">
+                    </div>
+                    <div class="row form-row">
+                        <label for="">Enter Mobile Number</label>
+                        <input type="text" id="mob-number" placeholder="+91" class="form-control">
+                    </div>
+                    <div class="row form-row">
+                        <label for="">Enter Email</label>
+                        <input type="text" id="email" placeholder="abc@gmail.com" class="form-control">
+                    </div>
+                    <div   id="dat" class="row form-row">
+                        <label for="">Enter Match Date</label>
+                        <input  type="date" id="app-date" placeholder="" class="form-control">
+                    </div>
+                    <div class="row form-row">
+                        <label for=""> Time </label>
+                        <input type="time" id="Mob-modal" placeholder="Mobile Modal " class="form-control">
+                    </div>
+                    <div class="row form-row">
+                        <label for=""> Enter Quantity</label>
+                        <input type="number" id="app-time" placeholder="1 ticket.." class="form-control">
+                    </div>
+                    <div class="row form-row">
+                        <button id="button" onclick="openpopup()"   class="btn-appointment">
+                            Proceed
+                        </button>
+                        
+                  
+                    </div>
+                    </div>
+                    
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+
+
+
+        
+
+<div class="con">
+<div class="popup" id="popup">
+    <img src="./images/404-tick.png" alt="">
+    <h2>Congratulations</h2>
+    <p class="para" >Your Ticket Has Been Booked </p>
+    <button type="button" onclick="closepopup()">OK</button>
+
+</div>
+</div>
+
+
+
+
+
+</body>
+<script type="module">
+    // Import the functions you need from the SDKs you need
+       
+    // TODO: Add SDKs for Firebase products that you want to use
+    // https://firebase.google.com/docs/web/setup#available-libraries
+  
+    // Your web app's Firebase configuration
+    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-app.js";
+    import { getDatabase,set,ref } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-database.js";
+    import { getAuth, createUserWithEmailAndPassword} from "https://www.gstatic.com/firebasejs/9.17.1/firebase-auth.js";
+   
+    import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-analytics.js";
+    // TODO: Add SDKs for Firebase products that you want to use
+    // https://firebase.google.com/docs/web/setup#available-libraries
+  
+    // Your web app's Firebase configuration
+    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+    const firebaseConfig = {
+      apiKey: "AIzaSyAbmlY9D9GIZRzxT9iOmg37mQALbQqGUvg",
+      authDomain: "siteeee-77acf.firebaseapp.com",
+      databaseURL: "https://siteeee-77acf-default-rtdb.firebaseio.com",
+      projectId: "siteeee-77acf",
+      storageBucket: "siteeee-77acf.appspot.com",
+      messagingSenderId: "586172472801",
+      appId: "1:586172472801:web:af250f1be29dd3fbbe46a0",
+      measurementId: "G-VR52VJKXLP"
+    };
+  
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const analytics = getAnalytics(app);
+    
+  
+    // Initialize Firebase
+    
+    
+ const db=getDatabase();
+ var name=document.getElementById('name');
+   var email=document.getElementById('email');
+   var mob_number=document.getElementById('mob-number');
+   var app_date=document.getElementById('app-date');
+   var Mob_modal=document.getElementById('Mob-modal');
+   var app_time=document.getElementById('app-time');
+   var button=document.getElementById('button');
+   var id=document.getElementById('id')
+
+   function data(){
+    
+    set(ref(db,'user/'+name.value),{
+        
+        name:name.value,
+        email:email.value,
+        mob_number:mob_number.value,
+        app_date:app_date.value,
+        app_time:app_time.value,
+        Mob_modal:Mob_modal.value
+
+    })
+    .then(()=>{
+        alert("data added")
+    })
+  .catch(()=>{
+    alert(error)
+  })
+   }
+button.addEventListener('click',data)
+  
+  </script>
+
+
+
+
+  <script src="./js/booking.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+
+</html>
